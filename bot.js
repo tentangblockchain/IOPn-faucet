@@ -6,10 +6,17 @@ const path = require('path');
 const cheerio = require('cheerio');
 
 // Config
-const BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'; // Ganti dengan token bot kamu
-const FAUCET_API = 'https://faucet.iopn.tech/api/faucet';
+const BOT_TOKEN = process.env.BOT_TOKEN;
+const FAUCET_API = process.env.FAUCET_API || 'https://faucet.iopn.tech/api/faucet';
 const WALLETS_FILE = path.join(__dirname, 'wallets.json');
-const CLAIM_INTERVAL = 24 * 60 * 60 * 1000; // 24 jam
+const CLAIM_INTERVAL = parseInt(process.env.CLAIM_INTERVAL || '24') * 60 * 60 * 1000;
+
+if (!BOT_TOKEN) {
+  console.error('❌ ERROR: BOT_TOKEN environment variable is not set!');
+  console.error('📝 Please set your Telegram Bot Token in Replit Secrets');
+  console.error('💡 Get your token from @BotFather on Telegram');
+  process.exit(1);
+}
 
 class IOPNFaucetBot {
   constructor() {
