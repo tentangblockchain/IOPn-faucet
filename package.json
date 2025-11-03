@@ -1,0 +1,22 @@
+{
+  "name": "iopn-faucet-bot",
+  "version": "1.0.0",
+  "description": "Auto claim IOPN faucet dengan multiple wallets",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "dev": "nodemon bot.js"
+  },
+  "keywords": ["telegram", "bot", "faucet", "crypto", "auto-claim"],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.64.0",
+    "axios": "^1.6.0",
+    "ethers": "^6.9.0",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
