@@ -19,7 +19,27 @@ Bot Telegram untuk auto claim faucet IOPN dengan multiple wallets! Generate ratu
 
 ## 🚀 Installation
 
-### 1. Clone atau Download Repository
+### Replit (Recommended - Always Online!)
+
+1. **Fork this Repl** atau import dari GitHub
+2. **Setup Bot Token:**
+   - Buka **Secrets** tab (ikon kunci di sidebar)
+   - Tambahkan secret baru:
+     - Key: `BOT_TOKEN`
+     - Value: Token dari @BotFather
+3. **Run Bot:**
+   - Klik tombol **Run** atau tekan `Ctrl + Enter`
+   - Bot akan otomatis running 24/7!
+
+✅ **Keuntungan Replit:**
+- Bot jalan 24/7 tanpa perlu PC nyala
+- Gratis hosting
+- Auto restart jika ada error
+- Mudah setup & deploy
+
+### Local Installation
+
+#### 1. Clone atau Download Repository
 
 ```bash
 # Clone jika punya git
@@ -29,21 +49,21 @@ cd iopn-faucet-bot
 # Atau download ZIP lalu extract
 ```
 
-### 2. Install Dependencies
+#### 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Setup Bot Token
+#### 3. Setup Bot Token
 
-Edit file `bot.js` dan ganti `YOUR_TELEGRAM_BOT_TOKEN`:
+Buat file `.env` dan isi:
 
-```javascript
-const BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'; // Ganti ini!
+```
+BOT_TOKEN=your_telegram_bot_token_here
 ```
 
-### 4. Run Bot
+#### 4. Run Bot
 
 ```bash
 npm start
