@@ -135,6 +135,10 @@ class IOPNFaucetBot {
       // Solve captcha
       const captchaSolution = await this.solveCaptcha(captchaData.captcha);
       
+      console.log(`🔍 Attempting claim for ${wallet.address.substring(0, 10)}...`);
+      console.log(`📝 Captcha ID: ${captchaData.captchaId}`);
+      console.log(`🔑 Captcha Solution: ${captchaSolution}`);
+      
       // Claim request
       const response = await axios.post(`${FAUCET_API}/claim`, {
         address: wallet.address,
@@ -155,6 +159,7 @@ class IOPNFaucetBot {
                        `📊 Claim Count: ${wallet.claimCount}\n` +
                        `🔗 TX: ${response.data.txHash.substring(0, 20)}...`;
 
+        console.log(`✅ Claim successful: ${response.data.amount} IOPN`);
         if (chatId) {
           this.bot.sendMessage(chatId, message);
         }
@@ -162,9 +167,12 @@ class IOPNFaucetBot {
       }
       return false;
     } catch (error) {
-      console.error(`Claim error for ${wallet.address}:`, error.message);
+      const errorMsg = error.response?.data?.error || error.response?.data?.message || error.message;
+      console.error(`❌ Claim error for ${wallet.address}:`, errorMsg);
+      console.error(`📋 Full error:`, error.response?.data || error.message);
+      
       if (chatId) {
-        this.bot.sendMessage(chatId, `❌ Claim gagal: ${error.message}`);
+        this.bot.sendMessage(chatId, `❌ Claim gagal: ${errorMsg}`);
       }
       return false;
     }
